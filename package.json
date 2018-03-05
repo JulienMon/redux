@@ -1,5 +1,5 @@
 {
-  "name": "Redux",
+  "name": "redux",
   "version": "1.0.0",
   "main": "index.js",
   "license": "MIT",
@@ -25,8 +25,10 @@
   "scripts": {
     "start": "parcel ./src/index.html --open",
     "build": "parcel build .src/index.html",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "eslint-check":
-      "eslint --print-config .eslintrc | eslint-config-prettier-check"
+    "test": "jest --watch",
+    "eslint-check": "eslint --print-config .eslintrc | eslint-config-prettier-check"
+  },
+  "jest": {
+    "setupTestFrameworkScriptFile": "./setupTests.js"
   }
 }
