@@ -1,6 +1,10 @@
 import { combineReducers } from 'redux'
 import courses from './courseReducer'
+import authors from './authorReducer'
 
-export default combineReducers({
-    courses
+const rootReducer = combineReducers({
+    courses,
+    authors
 })
+
+export default rootReducer
