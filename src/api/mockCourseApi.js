@@ -70,6 +70,8 @@ class CourseApi {
     }
 
     static saveCourse(course) {
+        // clone to avoid mutating reference passed in.
+        course = Object.assign({}, course)
         return new Promise((resolve, reject) => {
             setTimeout(() => {
                 // Simulate server-side validation
@@ -96,7 +98,8 @@ class CourseApi {
                     courses.push(course)
                 }
 
-                resolve(Object.assign({}, course))
+                // Just return here, since cloning at the beginning of the function instead.
+                resolve(course)
             }, delay)
         })
     }
@@ -104,9 +107,10 @@ class CourseApi {
     static deleteCourse(courseId) {
         return new Promise((resolve, reject) => {
             setTimeout(() => {
-                const indexOfCourseToDelete = courses.findIndex(course => {
-                    course.courseId == courseId
-                })
+                // Bug fix for issue #6 - Now returns since return is implied on arrow funcs without braces.
+                const indexOfCourseToDelete = courses.findIndex(
+                    course => course.courseId == courseId
+                )
                 courses.splice(indexOfCourseToDelete, 1)
                 resolve()
             }, delay)
